@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - Jojo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="avatar.png" alt="الصورة الرمزية" class="avatar"> <!-- استبدل 'avatar.png' بالصورة المناسبة -->
+        <h1>مرحبًا بكم في Jojo</h1>
+        <form action="process_login.php" method="POST">
+<p id="vv">البريد الالكتروني/رقم الهاتف</p>
+            <input type="text" id="email" name="email" placeholder="البريد الإلكتروني / رقم الهاتف (بدون رمز الدولة)" required>
+
+            <div class="checkbox">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">أوافق على شروط وأحكام Jojo وسياسة الخصوصية.</label>
+            </div>
+
+            <button type="submit" class="login-button">تسجيل الدخول</button>
+        </form>
+        <div class="footer">
+            <p>تسجيل الدخول أو <a href="#" class="register-link">التسجيل ككيان</a></p>
+        </div>
+    </div>
+</body>
+</html>
