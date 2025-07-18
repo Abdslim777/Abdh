@@ -4,81 +4,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع سبعات  </title>
+    <title>سبعات 777</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f8ff;
+            background-color: #1a1a1a;
+            color: #fff;
+            display: flex;
         }
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        nav {
-            margin: 10px 0;
-        }
-        nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .content {
+            background-color: #007acc;
             padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-        }
-        footer {
-            background-color: #4CAF50;
-            color: white;
             text-align: center;
-            padding: 10px;
-            position: relative;
-            bottom: 0;
+            transition: background-color 0.3s;
             width: 100%;
         }
-        h1 {
-            color: #333;
+        header:hover {
+            background-color: #005999;
         }
-        p {
-            line-height: 1.6;
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+        .container {
+            padding: 20px;
+            flex: 1;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #333;
+            transition: transform 0.3s;
+        }
+        .section:hover {
+            transform: scale(1.02);
+        }
+        .button {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e6b800;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #444;
+            margin-top: 20px;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #222;
+            padding: 15px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .sidebar h3 {
+            color: #ffcc00;
+        }
+        .points {
+            position: fixed;
+            right: 0;
+            top: 20%;
+            background-color: #222;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+        .points h3 {
+            color: #ffcc00;
+        }
+        .star-rating {
+            display: flex;
+            direction: row-reverse;
+            justify-content: flex-end;
+        }
+        .star {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .star:hover,
+        .star:hover ~ .star {
+            color: #ffcc00;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>مرحبًا بك في  موقع سبعات!</h1>
+    <h1>مرحبا بكم في سبعات 777</h1>
     <nav>
-        <a href="#about">حول</a>
+        <a href="#home">الرئيسية</a>
         <a href="#services">الخدمات</a>
         <a href="#contact">اتصل بنا</a>
+        <a href="#gallery">المعرض</a>
     </nav>
 </header>
 
-<div class="content">
-    <h2 id="about">حول الموقع</h2>
-    <p>هذا موقع تجريبي يضهر مدي اهتمامك يمكنك أعطانا فكرة في كيفية تصميم وإنشاء موقع لي خدمتك!</p>
+<div class="sidebar">
+    <h3>خيارات إضافية</h3>
+    <ul>
+        <li><a href="#home" style="color: #fff;">الصفحة الرئيسية</a></li>
+        <li><a href="#services" style="color: #fff;">الخدمات</a></li>
+        <li><a href="#contact" style="color: #fff;">اتصل بنا</a></li>
+    </ul>
+</div>
 
-    <h2 id="services">الخدمات</h2>
-    <p>نقدم مجموعة متنوعة من الخدمات، بما في ذلك تصميم المواقع، تطوير التطبيقات، واستشارات التكنولوجيا.</p>
+<div class="container" id="home">
+    <div class="section">
+        <h2>أفكار لتحسين الموقع</h2>
+        <p>نحن نبحث دائمًا عن أفكار جديدة لتحسين خدمتنا. يرجى إخبارنا برأيك!</p>
+        <a href="mailto:abdslim777524@gmail.com" class="button">أرسل فكرة</a>
+    </div>
+    
+    <div class="section" id="services">
+        <h2>خدماتنا</h2>
+        <p>نقدم مجموعة متنوعة من الخدمات التي تلبي احتياجاتكم.</p>
+    </div>
+    
+    <div class="section" id="contact">
+        <h2>خدمة العملاء</h2>
+        <p>لأي استفسارات أو دعم، لا تترددوا في التواصل معنا.</p>
+        <a href="https://wa.me/967777524000" class="button">تواصل عبر واتساب</a>
+    </div>
 
-    <h2 id="contact">اتصل بنا</h2>
-    <p>إذا كان لديك أي استفسارات، لا تتردد في <a href="mailto: abdslim777524@gmail.com">الاتصال بنا</a>.</p>
+    <div class="section" id="gallery">
+        <h2>المعرض</h2>
+        <p>استعرض بعض أعمالنا السابقة.</p>
+        <img src="image1.jpg" alt="صورة 1" style="width:100%; border-radius: 8px; margin-top: 10px;">
+        <img src="image2.jpg" alt="صورة 2" style="width:100%; border-radius: 8px; margin-top: 10px;">
+    </div>
+</div>
+
+<div class="points">
+    <h3>خيارات إضافية</h3>
+    <ul>
+        <li><a href="#" style="color: #ffcc00;">إغلاق الموقع</a></li>
+        <li><a href="#" style="color: #ffcc00;">إبلاغ عن مشكلة</a></li>
+        <li>
+            <a href="#" style="color: #ffcc00;" onclick="document.getElementById('ratingModal').style.display='block'">تقييم الموقع</a>
+        </li>
+    </ul>
+</div>
+
+<div id="ratingModal" style="display:none; position:fixed; left:50%; top:50%; transform:translate(-50%, -50%); background-color:#333; padding:20px; border-radius:8px; z-index:20;">
+    <h2 style="color:#ffcc00;">تقييم الموقع</h2>
+    <div class="star-rating">
+        <span class="star" data-value="5">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="1">★</span>
+    </div>
+    <textarea placeholder="أضف تعليقك هنا..." rows="4" style="width:100%; margin-top:10px;"></textarea>
+    <button style="margin-top:10px; background-color:#ffcc00; color:#000; border:none; padding:10px; border-radius:5px;">إرسال</button>
+    <button onclick="document.getElementById('ratingModal').style.display='none'" style="margin-top:10px; background-color:red; color:#fff; border:none; padding:10px; border-radius:5px;">إغلاق</button>
 </div>
 
 <footer>
-    <p>© 2025 جميع الحقوق محفوظة.</p>
+    <p>جميع الحقوق محفوظة &copy; 2025 سبعات 777</p>
 </footer>
+
+<script>
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-value');
+            alert('تم تقييم الموقع بـ ' + rating + ' نجوم!');
+        });
+    });
+</script>
 
 </body>
 </html>
