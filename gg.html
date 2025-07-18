@@ -13,16 +13,15 @@
             background-color: #1a1a1a;
             color: #fff;
             display: flex;
+            position: relative;
         }
         header {
             background-color: #007acc;
             padding: 20px;
             text-align: center;
-            transition: background-color 0.3s;
             width: 100%;
-        }
-        header:hover {
-            background-color: #005999;
+            position: relative;
+            z-index: 10;
         }
         nav {
             margin: 20px 0;
@@ -39,6 +38,7 @@
         .container {
             padding: 20px;
             flex: 1;
+            margin-right: 250px; /* مساحة للشريط الجانبي */
         }
         .section {
             margin: 20px 0;
@@ -68,25 +68,43 @@
             margin-top: 20px;
         }
         .sidebar {
-            width: 200px;
+            width: 250px;
             background-color: #222;
             padding: 15px;
             height: 100vh;
             position: fixed;
-            left: 0;
+            right: -250px; /* خارج الشاشة */
             top: 0;
+            transition: right 0.3s;
+            z-index: 20;
         }
-        .sidebar h3 {
-            color: #ffcc00;
+        .sidebar.open {
+            right: 0; /* يظهر عند الفتح */
+        }
+        .toggle-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background-color: #007acc;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 30;
         }
         .points {
             position: fixed;
-            right: 0;
+            left: 20px;
             top: 20%;
             background-color: #222;
             padding: 15px;
             border-radius: 8px;
             z-index: 10;
+            display: none; /* مخفي بشكل افتراضي */
+        }
+        .points.open {
+            display: block; /* يظهر عند الفتح */
         }
         .points h3 {
             color: #ffcc00;
@@ -119,15 +137,6 @@
     </nav>
 </header>
 
-<div class="sidebar">
-    <h3>خيارات إضافية</h3>
-    <ul>
-        <li><a href="#home" style="color: #fff;">الصفحة الرئيسية</a></li>
-        <li><a href="#services" style="color: #fff;">الخدمات</a></li>
-        <li><a href="#contact" style="color: #fff;">اتصل بنا</a></li>
-    </ul>
-</div>
-
 <div class="container" id="home">
     <div class="section">
         <h2>أفكار لتحسين الموقع</h2>
@@ -154,13 +163,24 @@
     </div>
 </div>
 
-<div class="points">
+<div class="sidebar" id="sidebar">
     <h3>خيارات إضافية</h3>
     <ul>
-        <li><a href="#" style="color: #ffcc00;">إغلاق الموقع</a></li>
-        <li><a href="#" style="color: #ffcc00;">إبلاغ عن مشكلة</a></li>
+        <li><a href="#home" style="color: #fff;">الصفحة الرئيسية</a></li>
+        <li><a href="#services" style="color: #fff;">الخدمات</a></li>
+        <li><a href="#contact" style="color: #fff;">اتصل بنا</a></li>
+    </ul>
+</div>
+
+<button class="toggle-sidebar" id="toggleSidebar">☰</button>
+
+<div class="points" id="points">
+    <h3>خيارات إضافية</h3>
+    <ul>
+        <li><a href="#" style="color: #ffcc00;" id="closeSite">إغلاق الموقع</a></li>
+        <li><a href="#" style="color: #ffcc00;" id="reportIssue">إبلاغ عن مشكلة</a></li>
         <li>
-            <a href="#" style="color: #ffcc00;" onclick="document.getElementById('ratingModal').style.display='block'">تقييم الموقع</a>
+            <a href="#" style="color: #ffcc00;" id="rateSite">تقييم الموقع</a>
         </li>
     </ul>
 </div>
@@ -174,22 +194,68 @@
         <span class="star" data-value="2">★</span>
         <span class="star" data-value="1">★</span>
     </div>
-    <textarea placeholder="أضف تعليقك هنا..." rows="4" style="width:100%; margin-top:10px;"></textarea>
-    <button style="margin-top:10px; background-color:#ffcc00; color:#000; border:none; padding:10px; border-radius:5px;">إرسال</button>
+    <textarea id="comment" placeholder="أضف تعليقك هنا..." rows="4" style="width:100%; margin-top:10px;"></textarea>
+    <button id="sendRating" style="margin-top:10px; background-color:#ffcc00; color:#000; border:none; padding:10px; border-radius:5px;">إرسال</button>
     <button onclick="document.getElementById('ratingModal').style.display='none'" style="margin-top:10px; background-color:red; color:#fff; border:none; padding:10px; border-radius:5px;">إغلاق</button>
 </div>
 
 <footer>
-    <p>جميع الحقوق محفوظة &copy; 2025 سبعات 777</p>
+    <p>جميع الحقوق محفوظة &copy; 2025 سبعات 777 | التصميم والمطور: عبده عبدالله</p>
 </footer>
 
 <script>
+    const sidebar = document.getElementById('sidebar');
+    const toggleSidebar = document.getElementById('toggleSidebar');
+    const points = document.getElementById('points');
+    const closeSite = document.getElementById('closeSite');
+    const reportIssue = document.getElementById('reportIssue');
+    const rateSite = document.getElementById('rateSite');
     const stars = document.querySelectorAll('.star');
+    let selectedRating = 0;
+
+    toggleSidebar.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
+
+    points.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', () => {
+        points.classList.remove('open');
+    });
+
+    closeSite.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.close();
+    });
+
+    reportIssue.addEventListener('click', (event) => {
+        event.preventDefault();
+        const issue = prompt("يرجى إدخال المشكلة:");
+        if (issue) {
+            const message = encodeURIComponent(issue);
+            window.open(`https://wa.me/967777524000?text=إبلاغ عن مشكلة: ${message}`);
+        }
+    });
+
+    rateSite.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.getElementById('ratingModal').style.display = 'block';
+    });
+
     stars.forEach(star => {
         star.addEventListener('click', () => {
-            const rating = star.getAttribute('data-value');
-            alert('تم تقييم الموقع بـ ' + rating + ' نجوم!');
+            selectedRating = star.getAttribute('data-value');
+            alert('تم تقييم الموقع بـ ' + selectedRating + ' نجوم!');
         });
+    });
+
+    document.getElementById('sendRating').addEventListener('click', () => {
+        const comment = document.getElementById('comment').value;
+        const message = encodeURIComponent(`تقييم الموقع: ${selectedRating} نجوم\nتعليق: ${comment}`);
+        window.open(`https://wa.me/967777524000?text=${message}`);
+        document.getElementById('ratingModal').style.display = 'none';
     });
 </script>
 
