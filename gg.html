@@ -4,259 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سبعات 777</title>
+    <title>موقع احترافي</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
-            color: #fff;
-            display: flex;
-            position: relative;
+            background-color: #f0f0f0;
+            color: #333;
         }
         header {
-            background-color: #007acc;
-            padding: 20px;
-            text-align: center;
-            width: 100%;
-            position: relative;
-            z-index: 10;
-        }
-        nav {
-            margin: 20px 0;
-        }
-        nav a {
-            color: #fff;
-            margin: 0 15px;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #ffcc00;
-        }
-        .container {
-            padding: 20px;
-            flex: 1;
-            margin-right: 250px; /* مساحة للشريط الجانبي */
-        }
-        .section {
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: 8px;
             background-color: #333;
-            transition: transform 0.3s;
-        }
-        .section:hover {
-            transform: scale(1.02);
-        }
-        .button {
-            background-color: #ffcc00;
-            color: #000;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #e6b800;
-        }
-        footer {
-            text-align: center;
+            color: #fff;
             padding: 10px;
-            background-color: #444;
-            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-icon, .options-icon {
+            cursor: pointer;
+            font-size: 24px;
         }
         .sidebar {
             width: 250px;
-            background-color: #222;
-            padding: 15px;
-            height: 100vh;
+            background-color: #fff;
             position: fixed;
-            right: -250px; /* خارج الشاشة */
             top: 0;
-            transition: right 0.3s;
-            z-index: 20;
+            left: -250px;
+            height: 100%;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            transition: left 0.3s;
+            padding: 20px;
         }
-        .sidebar.open {
-            right: 0; /* يظهر عند الفتح */
+        .sidebar.active {
+            left: 0;
         }
-        .toggle-sidebar {
+        .overlay {
             position: fixed;
-            right: 20px;
-            top: 20px;
-            background-color: #007acc;
-            color: #fff;
-            padding: 10px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        .overlay.active {
+            display: block;
+        }
+        .options {
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            display: none;
+        }
+        .options.active {
+            display: block;
+        }
+        .btn {
+            background-color: #ffcc00;
             border: none;
-            border-radius: 5px;
+            padding: 10px;
             cursor: pointer;
-            z-index: 30;
+            margin: 5px 0;
         }
-        .points {
-            position: fixed;
-            left: 20px;
-            top: 20%;
-            background-color: #222;
-            padding: 15px;
-            border-radius: 8px;
-            z-index: 10;
-            display: none; /* مخفي بشكل افتراضي */
-        }
-        .points.open {
-            display: block; /* يظهر عند الفتح */
-        }
-        .points h3 {
-            color: #ffcc00;
-        }
-        .star-rating {
-            display: flex;
-            direction: row-reverse;
-            justify-content: flex-end;
-        }
-        .star {
-            font-size: 24px;
-            cursor: pointer;
-            color: #ccc;
-        }
-        .star:hover,
-        .star:hover ~ .star {
-            color: #ffcc00;
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>مرحبا بكم في سبعات 777</h1>
-    <nav>
-        <a href="#home">الرئيسية</a>
-        <a href="#services">الخدمات</a>
-        <a href="#contact">اتصل بنا</a>
-        <a href="#gallery">المعرض</a>
-    </nav>
+    <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+    <h1>موقع احترافي</h1>
+    <div class="options-icon" onclick="toggleOptions()">⋮</div>
 </header>
 
-<div class="container" id="home">
-    <div class="section">
-        <h2>أفكار لتحسين الموقع</h2>
-        <p>نحن نبحث دائمًا عن أفكار جديدة لتحسين خدمتنا. يرجى إخبارنا برأيك!</p>
-        <a href="mailto:abdslim777524@gmail.com" class="button">أرسل فكرة</a>
-    </div>
-    
-    <div class="section" id="services">
-        <h2>خدماتنا</h2>
-        <p>نقدم مجموعة متنوعة من الخدمات التي تلبي احتياجاتكم.</p>
-    </div>
-    
-    <div class="section" id="contact">
-        <h2>خدمة العملاء</h2>
-        <p>لأي استفسارات أو دعم، لا تترددوا في التواصل معنا.</p>
-        <a href="https://wa.me/967777524000" class="button">تواصل عبر واتساب</a>
-    </div>
-
-    <div class="section" id="gallery">
-        <h2>المعرض</h2>
-        <p>استعرض بعض أعمالنا السابقة.</p>
-        <img src="image1.jpg" alt="صورة 1" style="width:100%; border-radius: 8px; margin-top: 10px;">
-        <img src="image2.jpg" alt="صورة 2" style="width:100%; border-radius: 8px; margin-top: 10px;">
-    </div>
-</div>
-
 <div class="sidebar" id="sidebar">
-    <h3>خيارات إضافية</h3>
-    <ul>
-        <li><a href="#home" style="color: #fff;">الصفحة الرئيسية</a></li>
-        <li><a href="#services" style="color: #fff;">الخدمات</a></li>
-        <li><a href="#contact" style="color: #fff;">اتصل بنا</a></li>
-    </ul>
+    <h2>خيارات الموقع</h2>
+    <button class="btn" onclick="alert('عروض متوفرة')">عروض متوفرة</button>
+    <button class="btn" onclick="alert('خدمات احترافية')">خدمات احترافية</button>
 </div>
 
-<button class="toggle-sidebar" id="toggleSidebar">☰</button>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
-<div class="points" id="points">
-    <h3>خيارات إضافية</h3>
-    <ul>
-        <li><a href="#" style="color: #ffcc00;" id="closeSite">إغلاق الموقع</a></li>
-        <li><a href="#" style="color: #ffcc00;" id="reportIssue">إبلاغ عن مشكلة</a></li>
-        <li>
-            <a href="#" style="color: #ffcc00;" id="rateSite">تقييم الموقع</a>
-        </li>
-    </ul>
-</div>
-
-<div id="ratingModal" style="display:none; position:fixed; left:50%; top:50%; transform:translate(-50%, -50%); background-color:#333; padding:20px; border-radius:8px; z-index:20;">
-    <h2 style="color:#ffcc00;">تقييم الموقع</h2>
-    <div class="star-rating">
-        <span class="star" data-value="5">★</span>
-        <span class="star" data-value="4">★</span>
-        <span class="star" data-value="3">★</span>
-        <span class="star" data-value="2">★</span>
-        <span class="star" data-value="1">★</span>
-    </div>
-    <textarea id="comment" placeholder="أضف تعليقك هنا..." rows="4" style="width:100%; margin-top:10px;"></textarea>
-    <button id="sendRating" style="margin-top:10px; background-color:#ffcc00; color:#000; border:none; padding:10px; border-radius:5px;">إرسال</button>
-    <button onclick="document.getElementById('ratingModal').style.display='none'" style="margin-top:10px; background-color:red; color:#fff; border:none; padding:10px; border-radius:5px;">إغلاق</button>
+<div class="options" id="options">
+    <button class="btn" onclick="closePage()">إغلاق الصفحة</button>
+    <button class="btn" onclick="reportIssue()">إبلاغ عن مشكلة</button>
+    <button class="btn" onclick="rateSite()">تقييم الموقع</button>
 </div>
 
 <footer>
-    <p>جميع الحقوق محفوظة &copy; 2025 سبعات 777 | التصميم والمطور: عبده عبدالله</p>
+    <p>حقوق التصميم والنشر © عبده عبدالله العمري</p>
+    <p>للتواصل: <a href="mailto:abdslim777524@gmail.com">abdslim777524@gmail.com</a> | واتساب: <a href="https://wa.me/967777524700">+967777524700</a></p>
 </footer>
 
 <script>
-    const sidebar = document.getElementById('sidebar');
-    const toggleSidebar = document.getElementById('toggleSidebar');
-    const points = document.getElementById('points');
-    const closeSite = document.getElementById('closeSite');
-    const reportIssue = document.getElementById('reportIssue');
-    const rateSite = document.getElementById('rateSite');
-    const stars = document.querySelectorAll('.star');
-    let selectedRating = 0;
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
 
-    toggleSidebar.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-    });
+    function closeSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    }
 
-    points.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
+    function toggleOptions() {
+        const options = document.getElementById('options');
+        options.classList.toggle('active');
+    }
 
-    document.addEventListener('click', () => {
-        points.classList.remove('open');
-    });
-
-    closeSite.addEventListener('click', (event) => {
-        event.preventDefault();
+    function closePage() {
         window.close();
-    });
+    }
 
-    reportIssue.addEventListener('click', (event) => {
-        event.preventDefault();
-        const issue = prompt("يرجى إدخال المشكلة:");
-        if (issue) {
-            const message = encodeURIComponent(issue);
-            window.open(`https://wa.me/967777524000?text=إبلاغ عن مشكلة: ${message}`);
+    function reportIssue() {
+        const comment = prompt("اكتب تعليقك:");
+        if (comment) {
+            const link = `https://wa.me/967777524700?text=${encodeURIComponent(comment)}`;
+            window.open(link);
         }
-    });
+    }
 
-    rateSite.addEventListener('click', (event) => {
-        event.preventDefault();
-        document.getElementById('ratingModal').style.display = 'block';
-    });
-
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            selectedRating = star.getAttribute('data-value');
-            alert('تم تقييم الموقع بـ ' + selectedRating + ' نجوم!');
-        });
-    });
-
-    document.getElementById('sendRating').addEventListener('click', () => {
-        const comment = document.getElementById('comment').value;
-        const message = encodeURIComponent(`تقييم الموقع: ${selectedRating} نجوم\nتعليق: ${comment}`);
-        window.open(`https://wa.me/967777524000?text=${message}`);
-        document.getElementById('ratingModal').style.display = 'none';
-    });
+    function rateSite() {
+        const rating = prompt("قيم الموقع من 1 إلى 5:");
+        const comment = prompt("اكتب تعليقك:");
+        if (rating && comment) {
+            const link = `https://wa.me/967777524700?text=تقييم: ${rating} نجوم. تعليق: ${encodeURIComponent(comment)}`;
+            window.open(link);
+        }
+    }
 </script>
 
 </body>
